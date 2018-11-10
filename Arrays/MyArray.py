@@ -6,7 +6,7 @@ class MyArray(object):
         self._n = 0
         self._capacity = 1
         # Creates a null ptr array obj
-        self._array = (self.capacity * ctypes.py_object)()
+        self._array = (self._capacity * ctypes.py_object)()
         #self.array[:] = [None] * self.size
     
     """
@@ -15,9 +15,12 @@ class MyArray(object):
     """
     def __str__(self):
         string = ""
+        if not self._array:
+            return "[]"
+
         string += "["
-        for i, val in enumerate(self.array):
-            if i + 1 < len(self.array):
+        for i, val in enumerate(self._array):
+            if i + 1 < len(self._array):
                 string += "'{}',".format(str(val))
             else:
                 string += "'{}'".format(str(val))
@@ -34,7 +37,7 @@ class MyArray(object):
         pass
     
     def size(self):
-        return self.size
+        return self._n
     
     def contains(self, item):
         pass
