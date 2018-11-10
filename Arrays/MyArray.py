@@ -1,4 +1,6 @@
 import ctypes
+#nclude <Python.h>
+
 class MyArray(object):
 
     def __init__(self):
@@ -15,7 +17,8 @@ class MyArray(object):
     """
     def __str__(self):
         string = ""
-        if not self._array:
+        
+        if self._n == 0:
             return "[]"
 
         string += "["
