@@ -45,6 +45,11 @@ class MyArray(object):
     def size(self):
         return self._n
     
+    def get(self, index):
+        if 0 <= index < self._n:
+            return self.array[index]
+        else:
+            raise("Index out of Bounds error.")
     def contains(self, item):
         for val in item:
             if val == item:
