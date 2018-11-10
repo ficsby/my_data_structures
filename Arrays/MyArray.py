@@ -46,5 +46,10 @@ class MyArray(object):
         return self._n
     
     def contains(self, item):
-        pass
+        for val in item:
+            if val == item:
+                return True
+
+        return False
+        
     
