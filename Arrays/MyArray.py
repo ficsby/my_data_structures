@@ -39,6 +39,9 @@ class MyArray(object):
     def remove(self, item):
         pass
     
+    def __len__(self):
+        return self._n
+
     def size(self):
         return self._n
     

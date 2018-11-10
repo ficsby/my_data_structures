@@ -4,3 +4,4 @@ class TestArray(object):
         array = MyArray()
         print(array)
         print(array.size())
+        print(len(array))
