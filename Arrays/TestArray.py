@@ -5,3 +5,10 @@ class TestArray(object):
         print(array)
         print(array.size())
         print(len(array))
+        
+        for i in range(20):
+            array.append(i)
+
+        array.insert(0, 10)
+        array.remove(10)
+        print(array)

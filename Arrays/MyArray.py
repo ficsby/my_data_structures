@@ -22,22 +22,52 @@ class MyArray(object):
             return "[]"
 
         string += "["
-        for i, val in enumerate(self._array):
-            if i + 1 < len(self._array):
-                string += "'{}',".format(str(val))
+        for i in range(self._n):
+            if i + 1 < self._n:
+                string += "'{}',".format(self._array[i])
             else:
-                string += "'{}'".format(str(val))
+                string += "'{}'".format(self._array[i])
         string += "]"
         return string
     
     def append(self, item):
-        pass
+        if self._n == self._capacity:
+            self.resize()
+        self._array[self._n] = item
+        self._n += 1
 
     def insert(self, index, item):
-        pass
+        if self._n == self._capacity:
+            self.resize()
+
+        # Creates a null ptr array obj
+        new_array = (self._capacity * ctypes.py_object)()
+
+        #index of original contents
+        ind = 0
+        self._n += 1
+        for i in range(self._n):
+            if i == index:
+                new_array[i] = item
+            else:
+                new_array[i] = self._array[ind]
+                ind += 1
+        self._array = new_array
 
     def remove(self, item):
-        pass
+        if not self.contains(item):
+            return None
+        
+        self._n -= 1
+
+        found = False
+        for i in range(self._n):
+            if self._array[i] == item and not found:
+                found = True
+            if found:
+                self._array[i] = self._array[i+1]
+
+        return item
     
     def __len__(self):
         return self._n
@@ -50,11 +80,20 @@ class MyArray(object):
             return self.array[index]
         else:
             raise("Index out of Bounds error.")
+            
     def contains(self, item):
-        for val in item:
-            if val == item:
+        for i in range(self._n):
+            if self._array[i] == item:
                 return True
 
         return False
         
+    def resize(self):
+        self._capacity *= 2
+        # Creates a null ptr array obj
+        new_array = (self._capacity * ctypes.py_object)()
+
+        for i in range(self._n):
+            new_array[i] = self._array[i]
+        self._array = new_array
     
